@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Répertoire Éducation Permanente — Cartographie des Piliers</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -561,10 +562,13 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <button class="btn" onclick="document.getElementById('csvInput').click()">📥 CSV</button>
-                    <button class="btn" onclick="document.getElementById('jsonInput').click()">📂 JSON</button>
+                    <button class="btn" onclick="document.getElementById('csvInput').click()">📥 Import</button>
                     <button class="btn" onclick="exportJSON()">📤 Export</button>
                     <button class="btn primary" onclick="openAddModal()">+</button>
+                </div>
+                <div class="action-buttons" style="margin-top:0.4rem;">
+                    <button class="btn" onclick="document.getElementById('jsonInput').click()">📂 Charger JSON</button>
+                    <button class="btn" onclick="clearAllData()" style="color:#f87171;">🗑️ Reset</button>
                 </div>
             </div>
             
@@ -752,7 +756,7 @@
     
     <div class="toast" id="toast"></div>
     
-    <input type="file" id="csvInput" accept=".csv" onchange="importCSV(event)">
+    <input type="file" id="csvInput" accept=".csv,.xlsx,.xls" onchange="importFile(event)">
     <input type="file" id="jsonInput" accept=".json" onchange="importJSON(event)">
     <input type="file" id="logoInput" accept="image/*" onchange="handleLogoUpload(event)">
 
@@ -902,7 +906,14 @@ function renderUnclassifiedList() {
     
     if (unclassified.length === 0) {
         container.innerHTML = `<div style="text-align:center;color:var(--text-muted);padding:1rem;font-size:0.75rem;">
-            ${data.associations.length === 0 ? 'Importez un CSV ou JSON' : 'Toutes les associations sont placées'}
+            ${data.associations.length === 0 
+                ? `<div style="margin-bottom:0.5rem;">📂 Importez un fichier</div>
+                   <div style="font-size:0.65rem;line-height:1.4;">
+                   Formats: .xlsx, .xls, .csv, .json<br><br>
+                   <a href="https://educationpermanente.cfwb.be/fileadmin/sites/edu_perm/uploads/Document/Listing_associations/RepertoirecoordonneesAEP_SITE_21-10-25.xlsx" 
+                      target="_blank" style="color:#6366f1;">📥 Télécharger le fichier officiel FWB</a>
+                   </div>` 
+                : '✅ Toutes les associations sont placées'}
         </div>`;
         return;
     }
@@ -1148,17 +1159,60 @@ function updateGrid() {
 }
 
 // ============ IMPORT / EXPORT ============
-function importCSV(event) {
+function importFile(event) {
     const file = event.target.files[0];
     if (!file) return;
     
+    const fileName = file.name.toLowerCase();
+    console.log('Importing file:', fileName);
+    
+    if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls')) {
+        importXLSX(file);
+    } else if (fileName.endsWith('.csv')) {
+        importCSV(file);
+    } else {
+        alert('Format non supporté. Utilisez .xlsx, .xls ou .csv');
+    }
+    
+    event.target.value = '';
+}
+
+function importXLSX(file) {
     const reader = new FileReader();
     reader.onload = (e) => {
-        const text = e.target.result;
-        parseCSV(text);
+        try {
+            const data_arr = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data_arr, { type: 'array' });
+            const sheetName = workbook.SheetNames[0];
+            const sheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+            
+            console.log('XLSX parsed:', jsonData.length, 'rows');
+            console.log('First row:', jsonData[0]);
+            
+            processImportedData(jsonData);
+        } catch (err) {
+            console.error('XLSX parse error:', err);
+            alert('Erreur lors de la lecture du fichier Excel: ' + err.message);
+        }
     };
+    reader.onerror = () => alert('Erreur de lecture du fichier');
+    reader.readAsArrayBuffer(file);
+}
+
+function importCSV(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const text = e.target.result;
+            parseCSV(text);
+        } catch (err) {
+            console.error('CSV parse error:', err);
+            alert('Erreur lors de la lecture du fichier CSV: ' + err.message);
+        }
+    };
+    reader.onerror = () => alert('Erreur de lecture du fichier');
     reader.readAsText(file);
-    event.target.value = '';
 }
 
 function parseCSV(text) {
@@ -1166,49 +1220,84 @@ function parseCSV(text) {
     text = text.replace(/^\uFEFF/, '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     
     const lines = text.split('\n').filter(l => l.trim());
-    if (lines.length < 2) return;
+    if (lines.length < 2) {
+        alert('Fichier CSV vide ou invalide');
+        return;
+    }
     
     // Parse header
     const headers = lines[0].split(';').map(h => h.trim());
+    console.log('CSV headers:', headers);
     
-    const newAssocs = [];
+    const jsonData = [];
     for (let i = 1; i < lines.length; i++) {
         const values = lines[i].split(';').map(v => v.trim().replace(/^"|"$/g, ''));
-        
         const row = {};
         headers.forEach((h, idx) => {
             row[h] = values[idx] || '';
         });
+        jsonData.push(row);
+    }
+    
+    processImportedData(jsonData);
+}
+
+function processImportedData(jsonData) {
+    if (!jsonData || jsonData.length === 0) {
+        alert('Aucune donnée trouvée dans le fichier');
+        return;
+    }
+    
+    const newAssocs = [];
+    let skipped = 0;
+    
+    for (const row of jsonData) {
+        // Try different column names (handle variations)
+        const nom = row['NOM_ASSOCIATION'] || row['Nom'] || row['nom'] || row['Association'] || '';
+        
+        if (!nom || nom.trim() === '') {
+            skipped++;
+            continue;
+        }
         
         // Check if already exists
         const exists = data.associations.some(a => 
-            a.nom.toLowerCase() === (row['NOM_ASSOCIATION'] || '').toLowerCase()
+            a.nom.toLowerCase().trim() === nom.toLowerCase().trim()
         );
         
-        if (!exists && row['NOM_ASSOCIATION']) {
-            newAssocs.push({
-                id: generateId(),
-                nom: row['NOM_ASSOCIATION'] || '',
-                sigle: row['Sigle'] || '',
-                reconnaissance: row['RECONNAISSANCE'] || '',
-                axes: row['AXES'] || '',
-                adresse: row['ADRESSE'] || '',
-                cp: row['C.P.'] || '',
-                localite: row['LOCALITE'] || '',
-                tel: row['TEL.'] || '',
-                email: row['E.MAIL'] || '',
-                web: row['Site Web'] || '',
-                pilier: null,
-                logo: null,
-                notes: ''
-            });
+        if (exists) {
+            skipped++;
+            continue;
         }
+        
+        newAssocs.push({
+            id: generateId(),
+            nom: nom.trim(),
+            sigle: (row['Sigle'] || row['sigle'] || '').toString().trim() || null,
+            reconnaissance: (row['RECONNAISSANCE'] || row['Reconnaissance'] || '').toString().trim(),
+            axes: (row['AXES'] || row['Axes'] || '').toString().trim(),
+            adresse: (row['ADRESSE'] || row['Adresse'] || '').toString().trim(),
+            cp: (row['C.P.'] || row['CP'] || row['Code postal'] || '').toString().trim(),
+            localite: (row['LOCALITE'] || row['Localité'] || row['Localite'] || '').toString().trim(),
+            tel: (row['TEL.'] || row['Tel'] || row['Téléphone'] || '').toString().trim(),
+            fax: (row['FAX'] || row['Fax'] || '').toString().trim(),
+            email: (row['E.MAIL'] || row['Email'] || row['E-mail'] || '').toString().trim(),
+            web: (row['Site Web'] || row['Website'] || row['Site web'] || '').toString().trim(),
+            pilier: null,
+            logo: null,
+            notes: ''
+        });
+    }
+    
+    if (newAssocs.length === 0) {
+        alert(`Aucune nouvelle association à importer (${skipped} déjà présentes ou lignes vides)`);
+        return;
     }
     
     data.associations = [...data.associations, ...newAssocs];
     saveData();
     renderAll();
-    showToast(`${newAssocs.length} associations importées`);
+    showToast(`${newAssocs.length} associations importées` + (skipped > 0 ? ` (${skipped} ignorées)` : ''));
 }
 
 function importJSON(event) {
@@ -1219,17 +1308,23 @@ function importJSON(event) {
     reader.onload = (e) => {
         try {
             const imported = JSON.parse(e.target.result);
-            if (imported.associations) {
+            console.log('JSON imported:', imported);
+            
+            if (imported.associations && Array.isArray(imported.associations)) {
                 data = imported;
                 if (!data.gridPositions) data.gridPositions = {};
                 saveData();
                 renderAll();
                 showToast(`${data.associations.length} associations chargées`);
+            } else {
+                alert('Format JSON invalide: le fichier doit contenir un tableau "associations"');
             }
         } catch (err) {
-            alert('Erreur de parsing JSON');
+            console.error('JSON parse error:', err);
+            alert('Erreur de parsing JSON: ' + err.message);
         }
     };
+    reader.onerror = () => alert('Erreur de lecture du fichier');
     reader.readAsText(file);
     event.target.value = '';
 }
@@ -1251,6 +1346,16 @@ function showToast(message) {
     toast.textContent = message;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ============ CLEAR DATA ============
+function clearAllData() {
+    if (!confirm('Supprimer toutes les données ? Cette action est irréversible.')) return;
+    
+    data = { associations: [], gridPositions: {} };
+    saveData();
+    renderAll();
+    showToast('Données effacées');
 }
 </script>
 </body>
