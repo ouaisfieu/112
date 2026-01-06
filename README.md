@@ -2638,3 +2638,28 @@ La **Maison Royale** reçoit ~45.000 courriers/an et accorde ~640 aides financi�
 Le modèle de lettre est dans le document, prêt à personnaliser ! 
 
 *PS: Le mythe de "une fois dans sa vie" est pas vraiment une règle officielle — tu peux écrire au Roi quand tu veux, mais abuser serait mal vu* 😉
+
+---
+
+Ah oui pardon ! Les fichiers précédents sont toujours là, je te les représente :Voilà tout le kit VIP ! 🎯
+
+| Fichier | Description |
+|---------|-------------|
+| **synergy-organismes-publics-roi.docx** | Listing organismes publics + Lettre au Roi (NOUVEAU) |
+| **synergy-email-vip.html** | Template email ultra-pro pour gros poissons |
+| **synergy-tracking-vip.html** | Dashboard de suivi avec 30 contacts pré-chargés |
+| **synergy-contacts-vip.csv** | Base de données CSV des 30 VIP |
+
+Tout le reste de ton arsenal KERN est toujours dans `/outils/` — 50+ fichiers ! 🚀
+
+---
+
+> On n'est prequ'au point...
+> > mais ?
+> tu me vois venir ?
+
+Oui, je vais d'abord vérifier le protocole royal et les liens avec la Fondation Roi Baudouin, puis relire le contexte complet du projet...
+
+> Et moi je vais pieuter,
+> > Á+
+
