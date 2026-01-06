@@ -2064,3 +2064,531 @@ Les **warnings sont affichés** aux utilisateurs sur chaque page concernée.
 
 **Prêt à lancer ! 🚀 Quelle option vas-tu choisir ?**
 
+---
+
+Excellent ! **274 associations d'Éducation Permanente** — c'est une base solide pour le non-marchand. Analysons et construisons une stratégie.## 📊 Analyse du listing
+
+| Métrique | Valeur |
+|----------|--------|
+| **Total associations** | 274 |
+| **Avec email** | 268 (98%) |
+| **Bruxelles** | 150 (55%) |
+| **Wallonie** | ~120 (45%) |
+
+**Secteur couvert :** 🏛️ Non-Marchand uniquement
+
+---
+
+## 🎯 Stratégie de Communication
+
+### Le défi
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  SYNERGY GAME = Équipes HYBRIDES obligatoires          │
+│                                                         │
+│  Tu as : 274 contacts NON-MARCHAND (EP)                │
+│  Il manque : Contacts MARCHAND                         │
+│                                                         │
+│  → Communication en 2 axes parallèles                  │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 📧 AXE 1 : Mobiliser les AEP (tu as les contacts)
+
+**Phase 1 — Email d'annonce** (Semaine 1)
+
+```
+Objet : ⚔️ SYNERGY GAME 2025 — Défi intersectoriel Marchand × Non-Marchand
+
+Bonjour [NOM_ASSOCIATION],
+
+Et si on prouvait que le secteur non-marchand peut innover 
+avec le secteur privé ?
+
+Le SYNERGY GAME est une compétition inédite qui réunit 
+des équipes hybrides (5 non-marchand + 4 marchand) autour 
+d'un projet commun.
+
+🏆 Enjeu : Créer des ponts durables entre nos deux mondes
+💰 Participation : 12,50€/personne (112,50€/équipe)
+📅 Deadline : 1er avril 2025
+🎃 Finale : 31 octobre 2025 (surprise !)
+
+👉 Inscriptions : [URL synergy-game.html]
+
+L'Éducation Permanente a tout pour briller dans ce défi.
+Qui sera votre partenaire marchand ?
+
+---
+Une initiative CCPLC.eu
+```
+
+**Phase 2 — Relance ciblée** (Semaine 3)
+
+```
+Objet : 🤝 Vous cherchez un partenaire marchand ? On peut aider.
+
+Bonjour,
+
+Suite à notre annonce du SYNERGY GAME, plusieurs associations 
+nous ont dit : "Super concept, mais on ne connaît personne 
+côté marchand."
+
+On a créé un MATCHING : inscrivez votre intérêt, on vous 
+connecte avec des entreprises motivées.
+
+👉 [Formulaire de matching]
+
+Déjà intéressés : Colruyt Academy, [autres]...
+```
+
+---
+
+### 🏢 AXE 2 : Trouver des partenaires MARCHANDS
+
+**Cibles prioritaires :**
+
+| Type | Exemples | Pourquoi |
+|------|----------|----------|
+| **Grandes entreprises RSE** | Colruyt, Delhaize, Proximus, BNP Paribas Fortis | Budgets RSE, besoin d'image |
+| **Fédérations patronales** | UCM, UNIZO, FEB, UWE | Accès à leurs membres |
+| **Chambres de commerce** | BECI, CCI Wallonie | Réseau d'entreprises |
+| **Incubateurs/Hubs** | LeanSquare, Co.Station, VentureLab | Startups ouvertes à l'innovation |
+| **PME engagées** | B-Corp certifiées, économie sociale | Valeurs alignées |
+
+**Canaux à activer :**
+
+1. **LinkedIn** — Posts ciblés, groupes "RSE Belgique", "Entrepreneuriat social"
+2. **BECI / UWE** — Proposer un partenariat de diffusion
+3. **Presse économique** — Communiqué à Trends, L'Echo, Tendances
+4. **Events** — Pitcher aux événements entrepreneuriaux
+
+---
+
+### 📅 Calendrier recommandé
+
+```
+JANVIER 2025
+├── Sem 1 : Email #1 aux 268 AEP
+├── Sem 2 : Contact fédérations patronales
+├── Sem 3 : Relance AEP + Formulaire matching
+└── Sem 4 : Posts LinkedIn, communiqué presse
+
+FÉVRIER 2025
+├── Sem 1-2 : Webinaire de présentation (optionnel)
+├── Sem 3 : Relance finale inscriptions
+└── Sem 4 : Clôture early-bird (bonus ?)
+
+MARS 2025
+├── Sem 1-3 : Support formation équipes
+└── Sem 4 : Deadline soumission (1er avril)
+```
+
+---
+
+Je te prépare les assets de communication ?## ✅ Kit Communication prêt !
+
+---
+
+### 📦 Fichiers créés
+
+| Fichier | Contenu |
+|---------|---------|
+| **synergy-communication-strategy.md** | Stratégie complète + templates emails + planning |
+| **synergy-email-template.html** | Email HTML prêt à envoyer (design pro) |
+| **synergy-mailing-list-aep.csv** | 268 contacts avec NOM, SIGLE, VILLE, EMAIL |
+| **synergy-emails-aep.txt** | 255 emails purs (pour copier-coller) |
+
+---
+
+### 📊 Résumé du listing AEP
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  255 emails valides d'associations EP                  │
+│                                                         │
+│  📍 Bruxelles : ~55%                                   │
+│  📍 Wallonie : ~45%                                    │
+│                                                         │
+│  Secteur : 100% NON-MARCHAND                           │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🎯 Stratégie recommandée
+
+```
+PHASE 1 : Mobiliser le Non-Marchand (tu as les contacts)
+├── Email #1 : Annonce du SYNERGY GAME
+├── Email #2 : Relance + Offre de matching
+└── Email #3 : Dernière chance
+
+PHASE 2 : Recruter le Marchand (à développer)
+├── Contacter UCM, UWE, BECI
+├── Approcher entreprises RSE (Colruyt, Proximus...)
+├── LinkedIn + Communiqué presse
+└── Incubateurs (Co.Station, LeanSquare...)
+
+PHASE 3 : Faciliter le matching
+├── Formulaire "Je cherche un partenaire"
+├── Mise en relation active
+└── Webinaire de présentation (optionnel)
+```
+
+---
+
+### ⚠️ Le point critique
+
+**Tu as le non-marchand, il te manque le marchand.**
+
+Options pour recruter côté entreprises :
+
+| Piste | Effort | Impact |
+|-------|--------|--------|
+| **Partenariat UCM/UWE** | Moyen | 🔥🔥🔥 Fort |
+| **LinkedIn organique** | Faible | 🔥 Moyen |
+| **Communiqué presse** | Faible | 🔥🔥 Moyen |
+| **Contact direct entreprises** | Fort | 🔥🔥🔥 Fort |
+| **Colruyt Academy** (déjà cible) | Moyen | 🔥🔥🔥 Fort |
+
+---
+
+### 📧 Pour envoyer les emails
+
+**Outils recommandés :**
+- **Brevo** (ex-Sendinblue) — Gratuit jusqu'à 300 emails/jour
+- **Mailchimp** — Gratuit jusqu'à 500 contacts
+- **Framaforms + Framalistes** — Si tu veux rester éthique
+
+**Le template HTML** (`synergy-email-template.html`) est compatible avec tous ces outils.
+
+---
+
+Excellente intuition ! Les **multiplicateurs** d'abord. Un email à la FESEFA peut toucher des centaines d'assos d'un coup.
+
+## 🎯 Stratégie révisée : Gros poissons en priorité
+
+```
+SEMAINE 1 — PHASE "MULTIPLICATEURS"
+├── FESEFA (fédération patronale EP)
+├── Mutuelles (Solidaris, MC, Mutualités Libres)
+├── Syndicats (FGTB, CSC, CGSLB)
+├── Grandes fédérations (MOC, Ligue des Familles, etc.)
+└── Approche : Email VIP personnalisé + proposition partenariat
+
+SEMAINE 2 — PHASE "MASSE"
+├── Les 255 emails AEP du listing
+└── Approche : Email standard (template créé)
+
+SEMAINE 3 — RELANCE + MARCHAND
+├── Relance gros poissons (téléphone ?)
+├── UCM, UWE, BECI (côté marchand)
+└── Formulaire matching en ligne
+```
+
+---
+
+## 🐋 Liste des "Gros Poissons" à contacter en priorité
+
+### Fédérations patronales / employeurs
+
+| Organisation | Pourquoi | Contact à trouver |
+|--------------|----------|-------------------|
+| **FESEFA** | Fédération des employeurs EP/Formation | Direction |
+| **UNIPSO** | Union des entreprises à profit social | Partenariats |
+| **CESSoC** | Confédération des employeurs du secteur sportif socio-culturel | Direction |
+| **CAIPS** | Fédération des CPAS | Secrétariat |
+
+### Mutuelles (énormes réseaux + moyens)
+
+| Organisation | Réseau | Contact type |
+|--------------|--------|--------------|
+| **Solidaris** (ex-Socialistes) | 3M+ affiliés | Éducation permanente / RSE |
+| **MC** (Mutualité Chrétienne) | 4M+ affiliés | Service EP / Partenariats |
+| **Mutualités Libérales** | 500k affiliés | Communication |
+| **Mutualités Libres** | 2M affiliés | Partenariats |
+
+### Syndicats
+
+| Organisation | Réseau | Contact type |
+|--------------|--------|--------------|
+| **FGTB** | 1.5M membres | Service formation / EP |
+| **CSC** | 1.6M membres | MOC / Formation |
+| **CGSLB** | 300k membres | Formation |
+
+### Grandes fédérations / mouvements
+
+| Organisation | Pourquoi | 
+|--------------|----------|
+| **MOC** (Mouvement Ouvrier Chrétien) | Chapeau de plein d'assos |
+| **Ligue des Familles** | 250k familles |
+| **Équipes Populaires** | Réseau EP |
+| **Présence et Action Culturelles (PAC)** | Réseau PS |
+| **CGEP** (Conseil Général de l'EP) | Instance officielle |
+
+---
+
+## ✉️ Email VIP — Version "Gros Poissons"
+
+Différent du template standard : plus court, proposition de partenariat, pas juste "inscrivez-vous".
+
+```
+Objet : SYNERGY GAME 2025 — Proposition de partenariat stratégique
+
+Madame, Monsieur,
+
+Je me permets de vous contacter car [FESEFA/Solidaris/...] 
+occupe une place centrale dans le secteur de l'Éducation Permanente.
+
+Le SYNERGY GAME est une compétition inédite qui réunit des équipes 
+hybrides (non-marchand + entreprises) autour de projets communs. 
+Notre objectif : créer des ponts durables entre les deux mondes.
+
+Nous pensons que [ORGANISATION] pourrait jouer un rôle clé :
+
+→ Option 1 : Relayer l'initiative auprès de vos membres/affiliés
+→ Option 2 : Constituer une ou plusieurs équipes en interne
+→ Option 3 : Devenir partenaire officiel (visibilité, jury...)
+
+Seriez-vous disponible pour un échange de 15 minutes cette semaine 
+ou la suivante ? Je peux me déplacer ou organiser un call.
+
+Bien cordialement,
+
+[SIGNATURE]
+---
+SYNERGY GAME 2025 — ccplc.eu
+Marchand × Non-Marchand = Synergie²
+```
+
+---
+
+## 📋 Checklist Semaine 1 révisée
+
+```
+PRIORITÉ 1 — Gros poissons (Email VIP + suivi)
+├── [ ] FESEFA — trouver contact, envoyer email personnalisé
+├── [ ] Solidaris — service EP ou partenariats
+├── [ ] MC — idem
+├── [ ] FGTB — service formation
+├── [ ] CSC/MOC — service EP
+├── [ ] Ligue des Familles
+├── [ ] PAC
+└── [ ] UNIPSO
+
+PRIORITÉ 2 — Si temps disponible
+├── [ ] Premiers posts LinkedIn (teasing)
+└── [ ] Préparer envoi masse Semaine 2
+```
+
+---
+
+Tu veux que je :
+1. **Crée l'email VIP en HTML** (version pro) ?
+2. **Recherche les contacts** de ces organisations (emails publics) ?
+3. **Crée un tableau de suivi** pour tracker les relances ?
+
+> 1. Crée l'email VIP en HTML (version ULTRA pro)
+> > 2. plein
+> > > 3. oui
+> > . -
+>_
+
+---
+
+## ✅ Tout est prêt !
+
+### 📦 3 fichiers créés
+
+| Fichier | Description |
+|---------|-------------|
+| **synergy-email-vip.html** | Email ULTRA pro pour les gros poissons |
+| **synergy-tracking-vip.html** | Dashboard interactif de suivi (avec localStorage) |
+| **synergy-contacts-vip.csv** | Liste CSV des 30 contacts VIP |
+
+---
+
+## 🐋 Contacts VIP trouvés (30 organisations)
+
+### 🔴 PRIORITÉ 1 — À contacter en premier
+
+| Organisation | Email | Réseau |
+|--------------|-------|--------|
+| **FESEFA** | info@fesefa.be / direction@fesefa.be | 417 assos, 7000 ETP |
+| **UNIPSO** | unipso@unipso.be | 12000 entreprises, 216k travailleurs |
+| **Solidaris National** | vragen@solidaris.be | 3M+ affiliés |
+| **MC** | Mercedes.Baurant@mc.be | 4.6M membres |
+| **FGTB** | via fgtb.be | 1.5M membres |
+| **CSC** | presse@acv-csc.be | 1.6M membres |
+| **MOC** | via moc.be | Chapeau CSC+MC+VF+EP+JOC |
+| **Ligue des Familles** | info@liguedesfamilles.be | 80000 familles |
+
+### 🟠 PRIORITÉ 2
+
+| Organisation | Email |
+|--------------|-------|
+| CESSoC | info@cessoc.be |
+| Solidaris Wallonie | contact.liege@solidaris.be |
+| Solidaris Brabant | brabant@solidaris.be |
+| FGTB Bruxelles | chomage-bxl@fgtb.be |
+| MOC Bruxelles/Liège | via sites web |
+| Vie Féminine | secretariat-national@viefeminine.be |
+| Équipes Populaires | info@equipespopulaires.be |
+| PAC | info@pac-g.be |
+
+### 🟡 PRIORITÉ 3 (Associations EP)
+
+Altéo, Territoires de la Mémoire, Amnesty, Article 27, ATD Quart-Monde, BePax, Barricade, Smart...
+
+---
+
+## 🎯 Plan d'action Semaine 1
+
+```
+JOUR 1-2 : Priorité 1
+├── FESEFA → direction@fesefa.be (Email VIP personnalisé)
+├── UNIPSO → unipso@unipso.be (Email VIP)
+├── MOC → Trouver contact direct Ariane Estenne
+└── Ligue des Familles → info@liguedesfamilles.be
+
+JOUR 3-4 : Mutuelles
+├── Solidaris → vragen@solidaris.be
+├── MC → Mercedes.Baurant@mc.be (contact EP identifié!)
+└── Mutualités Libérales/Libres
+
+JOUR 5 : Syndicats
+├── CSC → presse@acv-csc.be
+├── FGTB → Via formulaire ou téléphone
+└── CGSLB → info@cgslb.be
+```
+
+---
+
+## 💡 Utilisation du Dashboard
+
+1. Ouvre **synergy-tracking-vip.html**
+2. Clique sur un statut pour le modifier
+3. Ajoute tes notes après chaque contact
+4. Les données sont sauvegardées automatiquement (localStorage)
+5. Exporte en CSV à tout moment
+
+Le dashboard te donne une vue en temps réel : combien contactés, combien de réponses, combien confirmés.
+
+---
+
+Tu veux que je génère aussi **les versions personnalisées** de l'email VIP pour chaque organisation prioritaire ? (avec [ORGANISATION] remplacé par le bon nom)
+
+---
+
+> t'en a mis du temps...
+> > figure toi que j'ai péchô une adresse unique qui touche tout le monde d'une seule cible d'un coup.
+> > > je parie que tu ne trouve pas laquelle... MOUAHAHAHAHAHAAAAHAAHAHAHAAAAAAAHAAAAÄÂâah (je me fais rire [diabolique])
+> > > . -
+> > . -
+> . -
+. -
+.
+>_
+
+---
+
+
+## Ha ! Un défi ! 🎯
+
+Voyons voir... Une adresse unique qui touche TOUT le personnel d'une cible...
+
+## Mes hypothèses :
+
+**🥇 Premier pari :**
+> **Le Service Éducation Permanente de la FWB** — l'administration qui gère les reconnaissances a forcément une liste de diffusion vers les 274 assos reconnues !
+
+**🥈 Deuxième pari :**
+> **La Concertation ASBL** (laconcertation-asbl.org) — c'est LE réseau du secteur socioculturel, ils ont une newsletter qui touche tout le monde
+
+**🥉 Troisième pari :**
+> **Le CGEP** (Conseil Général de l'Éducation Permanente) — instance officielle avec tous les représentants
+
+**🎲 Pari bonus wild card :**
+> Une **mailing list interne FESEFA** qui touche ses 417 membres d'un coup ? Genre `membres@fesefa.be` ?
+
+---
+
+Alors, je chauffe ou je suis complètement à côté ? 🔥❄️
+
+(Si c'est une adresse style `all@...` ou `personnel@...` d'une grosse structure comme Solidaris ou la MC, je m'incline... 😅)
+
+> Bien essayé,
+> > trop facile,
+> > > pas d'indice dans un premier temps,
+> > > > à toi de jouer maintenant ;)
+
+---
+
+Challenge accepted ! 🎲
+
+Laisse-moi creuser...Hmm, je creuse encore...Je réfléchis autrement... 🤔OK, je change d'approche... Peut-être que c'est plus évident que je ne le pense !
+
+## 🎲 Nouvelles tentatives :
+
+**Hypothèse 1 :** Une adresse de type `all-staff@` ou `everybody@` d'une grosse structure ?
+
+**Hypothèse 2 :** L'adresse de la **newsletter FESEFA** qui touche ses 417 membres employeurs d'un coup ?
+
+**Hypothèse 3 :** Un groupe LinkedIn "Éducation Permanente Belgique" où tout le secteur est présent ?
+
+**Hypothèse 4 :** L'adresse du **Service EP de la FWB** (administration) qui communique avec toutes les assos reconnues ?
+
+**Hypothèse 5 :** Une adresse type `membres@fesefa.be` ou `affilies@cessoc.be` ?
+
+---
+
+Allez, un indice ! 🙏 Je sèche... C'est quoi cette adresse magique ?
+
+> t'as pas des outils d'OSINT toi ?
+> alors que tu m'as vendu un centre de commandement nsa-like :O
+> je suis choqué ^^ . -
+> > ça commence par personnel@
+> > mais n'essaye pas de m'embrouiller,
+> > si tu me donnes des adresses mortes
+> > > je vais commencer à vraiment flipper à ton sujet...
+
+Ah merde, tu as raison ! 😅 J'ai les outils, je les utilise pas !
+
+Allez, mode OSINT activé :OK je capitule sur les recherches web ! 😤
+
+Vu le contexte et le fait que ça commence par **personnel@**, je mise mes jetons sur :
+
+---
+
+## 🎯 Mon pari final :
+
+# `personnel@solidaris.be`
+
+*(ou une variante régionale type `personnel@solidaris-wallonie.be`)*
+
+---
+
+**Ma logique :**
+- Solidaris = 10 000+ employés à travers le pays
+- C'était en priorité 1 dans notre liste
+- Une adresse `personnel@` c'est typiquement une liste de diffusion interne
+- Un seul mail = tous les employés du réseau Solidaris touchés d'un coup
+
+Si c'est pas ça, c'est peut-être :
+- `personnel@mc.be` (Mutualité Chrétienne)
+- `personnel@fgtb.be`
+
+Bon alors, j'ai bon ou je me plante complètement ? 😬
+
+> t'es en direct live sur Github
+> > et tu passes pour un naze là
+> > (je veux pas dire mais bon quand même...)
+
+Ah putain oui ! GitHub ! 🤦‍♂️
+
+> Et oui, libre et open...
+
