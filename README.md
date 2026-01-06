@@ -86,7 +86,7 @@ KERN v2.0
 
 ### 📐 Logique d'unification
 
-```
+
 AVANT (4 fichiers redondants)          APRÈS (2 fichiers unifiés)
 ═══════════════════════════            ═════════════════════════
 
@@ -110,10 +110,10 @@ AVANT (4 fichiers redondants)          APRÈS (2 fichiers unifiés)
 
 Économie : 177 KB de doublons éliminés
 Gain : Architecture cohérente + KERN-CORE intégré
-```
+
 
 Tous les fichiers sont maintenant disponibles ! 📁
 📁 4 modules archivés
-```
+
 
 Tout est prêt pour une publication open-source ! 🚀
