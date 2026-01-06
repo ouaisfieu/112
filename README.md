@@ -1104,4 +1104,137 @@ Maintenant j'ajoute B!Mi aux pages principales :## ✅ B!Mi est prêt !
 3. Entre ta clé OpenAI
 4. Pose une question !
 
+---
 
+Tu as raison de poser la question. Laisse-moi clarifier :
+
+---
+
+## 🔐 Sécurité de ta clé
+
+### Comment ça marche actuellement
+
+```
+[Ton navigateur] → [OpenAI API directement]
+      ↓
+   localStorage (clé stockée localement)
+```
+
+**Ce qui est safe :**
+- La clé reste dans TON navigateur (localStorage)
+- Appels directs à OpenAI, pas de serveur intermédiaire
+- Personne d'autre ne voit ta clé
+
+**Ce qui pourrait inquiéter :**
+- Si quelqu'un accède à ton navigateur, il peut voir la clé
+- Pas de limite de dépense côté KERN
+
+---
+
+## 💰 Protéger ton crédit OpenAI
+
+### Solution : Limite de dépense sur OpenAI
+
+1. Va sur **https://platform.openai.com/settings/organization/limits**
+2. Configure un **"Monthly budget"** (ex: $5/mois)
+3. OpenAI bloquera les appels au-delà
+
+```
+┌─────────────────────────────────────┐
+│  OpenAI Settings → Limits           │
+│                                     │
+│  Monthly budget: [ $5.00 ]          │
+│                                     │
+│  ✓ Hard limit - stops all requests  │
+└─────────────────────────────────────┘
+```
+
+**C'est LA vraie protection.** Même si quelqu'un volait ta clé, il ne pourrait pas dépasser ta limite.
+
+---
+
+## 🔧 Où entrer la clé ?
+
+Actuellement : tu cliques sur le bouton 🤖, et si pas de clé → formulaire de saisie.
+
+**Mais je peux faire mieux** — une page dédiée plus claire :## ✅ Page de configuration B!Mi créée
+
+---
+
+### 📍 Où configurer ta clé
+
+**Option 1 : Page dédiée**
+→ `bimi-config.html` (lien ajouté dans l'index)
+
+**Option 2 : Widget flottant**
+→ Clique sur 🤖 → formulaire de saisie → lien vers config complète
+
+---
+
+### 🔐 Comment c'est safe
+
+```
+┌──────────────────────────────────────────────────────┐
+│  TON NAVIGATEUR                                      │
+│  ┌────────────────┐     ┌────────────────────────┐  │
+│  │  localStorage  │────▶│  api.openai.com        │  │
+│  │  bimi_api_key  │     │  (appel direct HTTPS)  │  │
+│  └────────────────┘     └────────────────────────┘  │
+│         ▲                                            │
+│         │ Jamais envoyé ailleurs                     │
+└──────────────────────────────────────────────────────┘
+```
+
+**Protections :**
+1. ✅ Clé stockée localement uniquement
+2. ✅ Appels directs à OpenAI (pas de serveur tiers)
+3. ✅ Tu peux supprimer ta clé à tout moment
+4. ✅ **LIMITE DE BUDGET sur OpenAI** ← la vraie protection
+
+---
+
+### 💰 ÉTAPE CRITIQUE : Limite ton budget
+
+**Avant d'entrer ta clé, fais ça :**
+
+1. Va sur **https://platform.openai.com/settings/organization/limits**
+2. Configure **"Monthly budget"** = **$5** (ou ce que tu veux)
+3. Coche **"Hard limit"**
+
+```
+┌─────────────────────────────────────┐
+│  OpenAI → Settings → Limits         │
+│                                     │
+│  Usage limits                       │
+│  ├─ Monthly budget: [$5.00    ]     │
+│  └─ ☑ Hard limit (stops requests)   │
+│                                     │
+│  [Save]                             │
+└─────────────────────────────────────┘
+```
+
+**Même si quelqu'un volait ta clé, il ne pourrait pas dépasser $5.**
+
+---
+
+### 🧪 Test de la clé
+
+La page `bimi-config.html` a un bouton **"🧪 Tester"** qui vérifie :
+- Si la clé est valide
+- Si elle peut appeler l'API
+
+---
+
+### 📊 Résumé des coûts
+
+| Questions/jour | Coût/mois |
+|----------------|-----------|
+| 10 | ~$0.30 |
+| 50 | ~$1.50 |
+| 200 | ~$6.00 |
+
+**Avec $5/mois de limite, tu es tranquille.**
+
+---
+
+**Prochaine étape :** Configure ta limite sur OpenAI, puis entre ta clé dans `bimi-config.html` 🚀
