@@ -489,8 +489,149 @@ kern_entities    →  kern_entities       ✅
 
 ### ⚠️ Si ça plante encore
 
+
+
 NEXUS affiche maintenant un **écran de récupération** au lieu de crasher :
 - Lien direct vers import.html
 - Bouton "Reset complet"
 
 **Teste `import.html` maintenant** — ça devrait marcher ! 🎯
+
+
+---
+
+J'ai trouvé ! L'agent dans ton JSON n'a pas l'objet `stats` que kern-core.js attend. Je corrige :## ✅ CORRIGÉ !
+
+### 🔴 Le problème
+```
+Agent dans ton JSON:     { codename, level, xp, skills }
+kern-core.js attendait:  { codename, level, xp, skills, stats, achievements, settings }
+                                                        ↑
+                                        MANQUANT → CRASH sur agent.stats.dossiersCreated
+```
+
+---
+
+### 🛠️ Corrections appliquées
+
+| Fichier | Correction |
+|---------|------------|
+| **kern-data-backup.json** | ✅ Ajout de `stats`, `achievements`, `settings` à l'agent |
+| **kern-core.js** | ✅ Code défensif qui ajoute les propriétés manquantes automatiquement |
+| **import.html** | ✅ Répare automatiquement les profils agents incomplets lors de l'import |
+
+---
+
+### 🚀 FAIS CECI MAINTENANT
+
+1. **Ouvre `import.html`** directement (pas index.html, pas nexus)
+
+2. **Clique "🗑️ Tout effacer"** pour vider le localStorage corrompu
+
+3. **Glisse ton fichier `kern-data-backup.json`** (celui que je viens de corriger est dans le zip)
+
+4. **Clique "✅ Importer ces données"**
+
+5. **Ça devrait marcher !** 🎉
+
+---
+
+### 🔧 Structure agent corrigée
+
+```json
+{
+  "codename": "GANDALF-PRIME",
+  "level": 12,
+  "xp": 15420,
+  "skills": { ... },
+  "stats": {               // ← AJOUTÉ
+    "dossiersCreated": 6,
+    "entitiesCreated": 21,
+    "contactsAdded": 16,
+    ...
+  },
+  "achievements": [],      // ← AJOUTÉ
+  "settings": {            // ← AJOUTÉ
+    "theme": "dark",
+    ...
+  }
+}
+```
+
+---
+
+**Teste `import.html` maintenant** — le code défensif protège même si tu importes un ancien fichier ! 🛡️
+
+---
+
+Tu as 100% raison. C'est inacceptable. Je crée le wiki complet des données MAINTENANT.## ✅ FAIT — Wiki complet + Fichier corrigé !
+
+---
+
+### 🔴 LE PROBLÈME DE TON FICHIER
+
+```
+Ton agent avait:           kern-core.js attend:
+────────────────           ───────────────────
+codename ✓                 codename ✓
+level ✓                    level ✓
+xp ✓                       xp ✓
+skills ✓                   skills ✓
+                           stats ← MANQUANT !
+                           achievements ← MANQUANT !
+                           settings ← MANQUANT !
+```
+
+**Résultat** : `Cannot read properties of undefined (reading 'dossiersCreated')`
+
+---
+
+### 📚 CE QUE J'AI CRÉÉ
+
+| Fichier | Description |
+|---------|-------------|
+| **wiki-data.html** | Documentation COMPLÈTE de tous les formats |
+| **kern-data-FIXED.json** | Tes données avec l'agent corrigé |
+| **import.html** | Page d'import qui corrige auto les problèmes |
+| **kern-template-blank.json** | Template vide avec structure correcte |
+
+---
+
+### 🚀 POUR IMPORTER MAINTENANT
+
+1. **Ouvre `import.html`**
+2. **Clique "🗑️ Tout effacer"** (vide le localStorage)
+3. **Importe `kern-data-FIXED.json`** (le fichier corrigé)
+4. **C'est bon !**
+
+---
+
+### 📖 LE WIKI COUVRE
+
+- ✅ **Toutes les clés localStorage** avec noms exacts
+- ✅ **Structure Agent** avec TOUS les champs obligatoires
+- ✅ **Dossiers, Entités, Contacts, Notes, Missions, Journal, Partners, Protocole**
+- ✅ **Valeurs possibles** (types, statuts, priorités, catégories)
+- ✅ **Exemples de code** copier-coller
+- ✅ **Export/Import** depuis console
+- ✅ **Dépannage** erreurs courantes
+- ✅ **Template vierge** pour partir de zéro
+
+---
+
+### 🔑 MÉMO CRITIQUE
+
+```
+CLÉ AGENT:     kern_agent_profile  (PAS kern_agent !)
+CLÉ CONTACTS:  kern_network_contacts
+CLÉ NOTES:     kern_knowledge
+
+AGENT DOIT AVOIR:
+- stats: { dossiersCreated, entitiesCreated, ... }
+- achievements: []
+- settings: { theme, notifications, soundEffects }
+```
+
+---
+
+**Utilise `kern-data-FIXED.json` — ça marchera.** 🎯
