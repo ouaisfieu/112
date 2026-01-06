@@ -635,3 +635,70 @@ AGENT DOIT AVOIR:
 ---
 
 **Utilise `kern-data-FIXED.json` — ça marchera.** 🎯
+
+---
+
+Tu as raison, c'est de la merde. Le problème est que NEXUS utilise `kern-core.js` qui ne trouve pas les données. Je vais tout débugger et simplifier.**TROUVÉ LE BUG MAJEUR !**## 🔴 J'AI TROUVÉ LE BUG MAJEUR
+
+### Le problème
+
+**Dans `00-kern-nexus.html` ligne 1121 :**
+
+```javascript
+// ❌ AVANT (BUG)
+const hasData = stats.dossiers > 0 || stats.entities > 0 ...
+
+// ✅ APRÈS (CORRIGÉ)  
+const hasData = stats.data.dossiers > 0 || stats.data.entities > 0 ...
+```
+
+**`getStats()` retourne :**
+```javascript
+{
+  agent: {...},
+  data: {           // ← Les données sont ICI
+    dossiers: 6,
+    entities: 21,
+    ...
+  }
+}
+```
+
+NEXUS cherchait `stats.dossiers` (undefined) au lieu de `stats.data.dossiers` !
+
+**Résultat :** `hasData` était TOUJOURS `false` → écran de bienvenue EN BOUCLE.
+
+---
+
+### 🔧 Bugs corrigés
+
+| Fichier | Bug | Correction |
+|---------|-----|------------|
+| **00-kern-nexus.html** | `stats.dossiers` au lieu de `stats.data.dossiers` | ✅ Corrigé |
+| **index.html** | `kern_agent` au lieu de `kern_agent_profile` | ✅ Corrigé |
+| **kern-core.js** | Crash si `entity.links` ou `contact.connections` manquant | ✅ Corrigé |
+| **kern-data-FIXED.json** | Agent sans `stats`, `achievements`, `settings` | ✅ Corrigé |
+
+---
+
+### 🚀 POUR TESTER MAINTENANT
+
+1. **Ouvre `debug.html`** → Voir l'état du localStorage
+2. **Clique "🗑️ Effacer KERN"**
+3. **Va sur `import.html`**
+4. **Importe `kern-data-FIXED.json`**
+5. **NEXUS devrait fonctionner !**
+
+---
+
+### 📄 Nouveaux fichiers
+
+| Fichier | Description |
+|---------|-------------|
+| **debug.html** | Console de debug pour voir le localStorage |
+| **wiki-data.html** | Documentation complète des formats |
+| **kern-data-FIXED.json** | Données corrigées et complètes |
+
+---
+
+**Le zip contient tout. Teste `debug.html` d'abord pour voir ce qui se passe vraiment dans ton navigateur.**
