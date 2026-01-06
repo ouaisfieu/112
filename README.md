@@ -702,3 +702,108 @@ NEXUS cherchait `stats.dossiers` (undefined) au lieu de `stats.data.dossiers` !
 ---
 
 **Le zip contient tout. Teste `debug.html` d'abord pour voir ce qui se passe vraiment dans ton navigateur.**
+
+---
+
+Parfait. On attaque la consolidation. Méthodiquement.Maintenant la page de test :Maintenant, mise à jour de `import.html` pour utiliser `KERN.importData` :## ✅ CONSOLIDATION TERMINÉE
+
+---
+
+### 📋 Ce qui a été créé/refactorisé
+
+| Fichier | Description |
+|---------|-------------|
+| **SCHEMA.md** | Spécification définitive des données — SOURCE DE VÉRITÉ |
+| **kern-core.js v2.0** | Refactorisé avec validation/import centralisés |
+| **test.html** | Suite de tests automatisés |
+| **import.html** | Utilise `KERN.importData()` |
+| **index.html** | Utilise `KERN.importData()` |
+
+---
+
+### 🏗️ Architecture consolidée
+
+```
+                    SCHEMA.md
+                        │
+                        ▼
+    ┌───────────────────────────────────────┐
+    │         kern-core.js v2.0             │
+    │  ┌─────────────────────────────────┐  │
+    │  │  DEFAULTS (valeurs par défaut)  │  │
+    │  │  validateAgent()                 │  │
+    │  │  validateEntity()                │  │
+    │  │  validateContact()               │  │
+    │  │  ...                             │  │
+    │  └─────────────────────────────────┘  │
+    │  ┌─────────────────────────────────┐  │
+    │  │  KERN.importData() ← CENTRALISÉ │  │
+    │  │  - Corrige clés legacy          │  │
+    │  │  - Valide + complète            │  │
+    │  │  - Rapport détaillé             │  │
+    │  │  - Rollback si erreur           │  │
+    │  └─────────────────────────────────┘  │
+    └───────────────────────────────────────┘
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+    index.html     import.html     00-kern-nexus.html
+     (import)       (import)         (lecture)
+```
+
+---
+
+### 🔑 Points clés du refactoring
+
+**1. Une seule fonction d'import : `KERN.importData()`**
+```javascript
+const report = KERN.importData(jsonData);
+// report = { success, imported, errors, warnings }
+```
+
+**2. Validation automatique**
+```javascript
+// Tout agent importé est automatiquement complété
+{ codename: "TEST" }  
+    → { codename: "TEST", stats: {...}, skills: {...}, settings: {...} }
+```
+
+**3. Correction des clés legacy**
+```javascript
+kern_agent → kern_agent_profile  // Automatique
+```
+
+**4. Tests automatisés**
+```
+test.html vérifie :
+✓ KERN est défini
+✓ Agent a stats, skills, achievements, settings
+✓ getStats().data existe
+✓ Import corrige les clés legacy
+✓ Entités ont links[]
+✓ Contacts ont connections[]
+```
+
+---
+
+### 🧪 Pour tester
+
+1. **Ouvre `test.html`** → Tous les tests doivent passer
+2. **Ouvre `import.html`** → Importe ton JSON
+3. **Vérifie `debug.html`** → État du localStorage
+4. **Ouvre `00-kern-nexus.html`** → Doit fonctionner !
+
+---
+
+### 📊 Checklist consolidation
+
+- [x] SCHEMA.md — Spécification définitive
+- [x] kern-core.js v2.0 — Import/validation centralisés
+- [x] test.html — Tests automatiques
+- [x] import.html — Utilise KERN.importData()
+- [x] index.html — Utilise KERN.importData()
+- [x] Code d'import dupliqué supprimé
+
+---
+
+**Le système est maintenant robuste.** Un JSON bancal ne fera plus planter l'appli — il sera corrigé automatiquement à l'import.
