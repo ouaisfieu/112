@@ -807,3 +807,27 @@ test.html vérifie :
 ---
 
 **Le système est maintenant robuste.** Un JSON bancal ne fera plus planter l'appli — il sera corrigé automatiquement à l'import.
+
+---
+
+Toutes les fonctions sont maintenant présentes. Voici le fichier corrigé :## ✅ Corrigé
+
+**Fonctions ajoutées :**
+
+| Fonction | Type |
+|----------|------|
+| `getDossier(id)` | Nouveau |
+| `getEntity(id)` | Nouveau |
+| `getContact(id)` | Nouveau |
+| `getNote(id)` | Nouveau |
+| `updateNote(id, data)` | Nouveau |
+| `awardXP` | Alias → `addXP` |
+| `trainSkill` | Alias → `addSkillXP` |
+| `getRecentActivity` | Alias → `getActivityLog` |
+| `importAllData` | Alias → `importData` |
+
+**Toutes les 34 fonctions KERN appelées dans les HTML sont maintenant disponibles.**
+
+Reteste avec le nouveau `kern-core.js` !
+
+
