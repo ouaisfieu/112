@@ -359,3 +359,78 @@ Le module reprend l'esthétique "hacker/Matrix" du PDF :
 - Terminaux et alertes système
 
 **L'insurrection ne fait que commencer.** ⚡
+
+---
+
+Je vois les problèmes. Le zoom n'est pas implémenté et le layout "Radial" ne change rien. Je vais corriger ça :Maintenant, corrigeons le même problème dans `16-knowledge-graph.html` :## ✅ Graphes corrigés !
+
+### Problèmes identifiés et résolus :
+
+---
+
+### 🔍 **12-panopticon.html**
+
+| Problème | Solution |
+|----------|----------|
+| ❌ Pas de zoom | ✅ Ajout de `d3.zoom()` avec molette + pan |
+| ❌ Boutons sans effet | ✅ Layout "Radial" implémenté (cercle fixe) |
+| ❌ Labels/Relations marchaient mais re-rendaient tout | ✅ Inchangé (fonctionnel) |
+
+**Nouvelles fonctionnalités :**
+- 🖱️ **Molette** = Zoom in/out
+- 🖐️ **Drag sur fond** = Pan/déplacement
+- ➕➖⟲ **Boutons Zoom** dans la toolbar
+- 📍 **Indication** "Molette pour zoomer · Glisser pour déplacer"
+- 🔄 **Layout Radial** = Nodes en cercle, positions fixes
+
+---
+
+### 🧠 **16-knowledge-graph.html**
+
+| Problème | Solution |
+|----------|----------|
+| ❌ Pas de zoom | ✅ Ajout de `d3.zoom()` |
+| ❌ Pas de contrôles | ✅ Boutons +/-/⟲ ajoutés |
+
+**Nouvelles fonctionnalités :**
+- 🖱️ Zoom molette
+- 🖐️ Pan drag
+- ➕➖⟲ Boutons dans la barre de vue
+- 📍 Indication d'utilisation
+
+---
+
+### 📐 Comment ça marche maintenant
+
+```
+┌─────────────────────────────────────────────────┐
+│  [Force] [Radial]  [Labels] [Relations]         │
+│  Zoom: [−] [⟲] [+]              [🎯 Centrer]    │
+├─────────────────────────────────────────────────┤
+│                                                 │
+│         ○───○                                   │
+│        /     \      ← Molette pour zoomer       │
+│       ○       ○     ← Drag fond pour déplacer   │
+│        \     /      ← Drag node pour bouger     │
+│         ○───○                                   │
+│                                                 │
+│  🖱️ Molette pour zoomer · Glisser pour déplacer │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+### 🔄 Layout Radial vs Force
+
+**Force (défaut)** :
+- Nodes se repoussent
+- Links attirent
+- Simulation dynamique
+
+**Radial** :
+- Nodes placés en cercle
+- Positions fixes
+- Utile pour vue claire des relations
+
+---
+
