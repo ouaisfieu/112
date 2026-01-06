@@ -2592,3 +2592,49 @@ Ah putain oui ! GitHub ! 🤦‍♂️
 
 > Et oui, libre et open...
 
+---
+
+Ouf ! `personnel@ccplc.be` — c'était dans ma liste au moins ! 😅
+
+Allez, mode OSINT sérieux pour les organismes publics :J'ai toutes les infos ! Je te prépare le listing complet + la lettre royale :Et voilà ! 🏛️👑
+
+---
+
+## RÉSUMÉ DU LISTING
+
+### 🐋 GROS POISSONS (Impact maximal)
+
+| Organisme | Contact clé | Pouvoir |
+|-----------|-------------|---------|
+| **Cabinet Degryse** | degryse@gov.cfwb.be | Ministre Culture + EP |
+| **Service EP FWB** | culture.info@cfwb.be | Gère les 274 assos EP |
+| **COCOF** | cohesionsociale@spfb.brussels | 400 opérateurs BXL |
+| **DiCS Wallonie** | cohesionsociale.wallonie.be | 181 communes PCS |
+| **AVIQ** | info@aviq.be | 2000+ services Wallonie |
+
+### 🐟 POISSONS MOYENS
+
+- **CESSoC** — info@cessoc.be (fédération employeurs)
+- **WBI** — wbi.be (relations internationales)
+- **Réseau IDée** — reseau-idee.be (répertoire acteurs)
+
+### 🐠 PETITS POISSONS (Services techniques)
+
+Inscriptions, équivalences, recrutement, support...
+
+---
+
+## 👑 LETTRE AU ROI — Ce qu'il faut savoir
+
+La **Maison Royale** reçoit ~45.000 courriers/an et accorde ~640 aides financières (~200€ en moyenne). C'est via les **Œuvres de la Reine**.
+
+**Pour une aide financière :** Un rapport social d'un CPAS ou service social reconnu est requis.
+
+**Adresse :**
+> Service des Requêtes et Affaires Sociales  
+> Palais Royal  
+> 1000 Bruxelles
+
+Le modèle de lettre est dans le document, prêt à personnaliser ! 
+
+*PS: Le mythe de "une fois dans sa vie" est pas vraiment une règle officielle — tu peux écrire au Roi quand tu veux, mais abuser serait mal vu* 😉
