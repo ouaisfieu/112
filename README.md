@@ -432,5 +432,65 @@ Je vois les problèmes. Le zoom n'est pas implémenté et le layout "Radial" ne 
 - Positions fixes
 - Utile pour vue claire des relations
 
+
 ---
 
+Le JSON est valide. Le problème est dans NEXUS. Je crée une page d'import **bulletproof** :**TROUVÉ LE BUG !** Les clés ne correspondent pas entre le JSON et kern-core.js :Le problème : `kern-core.js` cherche `kern_agent_profile` mais ton JSON a `kern_agent` !
+
+Je corrige les deux :## ✅ BUGS CORRIGÉS !
+
+### 🔴 Le problème
+**Mismatch de clés :**
+```
+kern-core.js cherche : kern_agent_profile
+Ton JSON avait :       kern_agent          ← CRASH !
+```
+
+---
+
+### 🛠️ Corrections appliquées
+
+| Fichier | Correction |
+|---------|------------|
+| **import.html** | 🆕 Nouvelle page d'import bulletproof avec mapping des clés |
+| **kern-data-backup.json** | ✅ Clé `kern_agent` → `kern_agent_profile` |
+| **demo-data.js** | ✅ Même correction |
+| **index.html** | ✅ Mapping des clés lors de l'import |
+| **00-kern-nexus.html** | ✅ Try-catch + écran de récupération si crash |
+
+---
+
+### 🚀 Comment importer tes données maintenant
+
+**Option 1 : Page d'import directe (RECOMMANDÉ)**
+1. Ouvre **`import.html`**
+2. Glisse ton fichier `kern-data-backup.json`
+3. Clique "Importer ces données"
+4. Redirection automatique vers NEXUS
+
+**Option 2 : Reset + Import**
+1. Sur `import.html`, clique "🗑️ Tout effacer"
+2. Importe ton JSON
+3. C'est bon !
+
+---
+
+### 🔧 Mapping automatique des clés
+
+L'import gère maintenant automatiquement :
+```javascript
+kern_agent       →  kern_agent_profile  ✅
+kern_dossiers    →  kern_dossiers       ✅
+kern_entities    →  kern_entities       ✅
+...
+```
+
+---
+
+### ⚠️ Si ça plante encore
+
+NEXUS affiche maintenant un **écran de récupération** au lieu de crasher :
+- Lien direct vers import.html
+- Bouton "Reset complet"
+
+**Teste `import.html` maintenant** — ça devrait marcher ! 🎯
