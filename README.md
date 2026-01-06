@@ -1323,3 +1323,744 @@ Excellent point ! Tu as 100% raison. On fait un système à deux niveaux :
 
 ---
 
+Bonne question. Laisse-moi vérifier l'état du Synergy Game :## 📋 État du Synergy Game
+
+### ✅ Ce qui existe
+
+| Élément | Status |
+|---------|--------|
+| Landing page | ✅ Complète, stylée |
+| Concept & pitch | ✅ Marchand × Non-Marchand |
+| Cibles (EPFC, FESEC, Colruyt) | ✅ Présentées |
+| Règles du jeu | ✅ 9 membres, 12.50€, etc. |
+| Timeline | ✅ Janvier → Halloween 2025 |
+| FAQ | ✅ Questions courantes |
+| Easter eggs | ✅ Konami code, indices cachés |
+
+---
+
+### ❌ Ce qui manque pour lancer
+
+| Élément | Priorité | Complexité |
+|---------|----------|------------|
+| **Formulaire d'inscription** | 🔴 Critique | Moyenne |
+| **Création/gestion d'équipe** | 🔴 Critique | Haute |
+| **Dashboard équipe** | 🔴 Critique | Haute |
+| **Soumission de projet** | 🟡 Haute | Moyenne |
+| **Leaderboard** | 🟡 Haute | Moyenne |
+| **Tracking paiements** | 🟡 Haute | Moyenne |
+| **Notifications/emails** | 🟢 Nice-to-have | Haute |
+| **Admin panel** | 🟢 Nice-to-have | Haute |
+
+---
+
+### ⚠️ Problème technique majeur
+
+**Le localStorage ne suffit pas.**
+
+```
+Synergy Game = Multi-utilisateurs
+localStorage = Un seul navigateur
+
+→ Impossible de partager les équipes entre participants
+```
+
+**Options :**
+
+| Solution | Complexité | Coût |
+|----------|------------|------|
+| **A. Google Sheets comme "DB"** | Faible | Gratuit |
+| **B. Supabase** | Moyenne | Gratuit tier |
+| **C. Firebase** | Moyenne | Gratuit tier |
+| **D. Backend custom** | Haute | Variable |
+
+---
+
+### 🎯 Ma recommandation
+
+**Option A : Google Sheets + Google Forms**
+
+```
+┌────────────────────────────────────────────────┐
+│  INSCRIPTION                                   │
+│  Google Form → Google Sheet "Équipes"          │
+└────────────────────────────────────────────────┘
+                    ↓
+┌────────────────────────────────────────────────┐
+│  DASHBOARD (lecture seule)                     │
+│  synergy-dashboard.html                        │
+│  Lit les données depuis Google Sheets API      │
+│  Affiche : équipes, membres, leaderboard       │
+└────────────────────────────────────────────────┘
+```
+
+**Avantages :**
+- Pas de backend à coder
+- Google gère l'authentification
+- Tu peux modérer manuellement dans le Sheet
+- Export facile
+
+**Inconvénients :**
+- Moins "pro" visuellement
+- Moins de contrôle
+
+---
+
+### 📝 Checklist minimum pour lancer
+
+- [ ] **Google Form** pour inscription équipe
+- [ ] **Google Sheet** pour stocker les données
+- [ ] **Page dashboard** qui lit le Sheet
+- [ ] **Bouton "S'inscrire"** sur synergy-game.html → lien vers le Form
+- [ ] **Email de confirmation** (via Google Forms)
+
+**Temps estimé : 1-2 sessions**
+
+---
+
+Bonne question. Voici mon analyse :
+
+---
+
+## 🔍 Comparaison
+
+| Critère | Supabase | Firebase | Framaforms |
+|---------|----------|----------|------------|
+| **Type** | PostgreSQL (SQL) | Firestore (NoSQL) | Formulaire simple |
+| **Éthique** | Open source | Google (US) | Framasoft (FR, asso) |
+| **Données** | EU possible | US | Europe |
+| **Free tier** | 500MB DB | 1GB storage | ∞ (gratuit) |
+| **API** | ✅ REST auto | ✅ SDK JS | ❌ Export manuel |
+| **Auth** | ✅ Intégrée | ✅ Google/Email | ❌ Aucune |
+| **Dashboard dynamique** | ✅ Facile | ✅ Facile | ❌ Impossible |
+| **Complexité setup** | Moyenne | Moyenne | Très faible |
+| **Vendor lock-in** | Faible | Fort | Aucun |
+
+---
+
+## 🎯 Pour le Synergy Game, on a besoin de :
+
+| Besoin | Framaforms | Supabase/Firebase |
+|--------|------------|-------------------|
+| Inscription équipe | ✅ | ✅ |
+| Dashboard public (leaderboard) | ❌ Manuel | ✅ Temps réel |
+| Espace équipe privé | ❌ | ✅ |
+| Suivi des projets | ❌ | ✅ |
+| Notifications | ❌ | ✅ |
+| Export données | ✅ CSV | ✅ API |
+
+---
+
+## 💡 Mon avis
+
+### Option 1 : **Framaforms seul** (MVP ultra-simple)
+
+```
+[Framaforms] → Export CSV → [Tu mets à jour manuellement le site]
+```
+
+**Pour :** Éthique, gratuit, zéro code backend
+**Contre :** Pas de dashboard dynamique, travail manuel
+
+**Verdict :** OK pour tester l'intérêt, mais pas scalable.
+
+---
+
+### Option 2 : **Supabase** (recommandé)
+
+```
+┌─────────────────┐     ┌─────────────────┐
+│ synergy-game.html│────▶│    SUPABASE     │
+│ (inscription)   │     │  ┌───────────┐  │
+└─────────────────┘     │  │ teams     │  │
+                        │  │ members   │  │
+┌─────────────────┐     │  │ projects  │  │
+│ dashboard.html  │◀────│  └───────────┘  │
+│ (leaderboard)   │     └─────────────────┘
+└─────────────────┘
+```
+
+**Pour :**
+- Open source (pas de lock-in)
+- SQL = naturel pour équipes/membres
+- Hosting EU possible
+- Row Level Security = sécurité propre
+- Gratuit pour ton usage
+
+**Contre :**
+- Compte à créer
+- Un peu plus de setup
+
+---
+
+### Option 3 : **Firebase** 
+
+Même architecture que Supabase, mais :
+- Plus de docs/tutos
+- SDK plus simple
+- **MAIS** : Google, données US, NoSQL moins adapté
+
+---
+
+## 🏆 Ma recommandation
+
+### **Supabase** pour ces raisons :
+
+1. **Open source** = cohérent avec l'esprit KERN/Framasoft
+2. **SQL** = parfait pour équipes → membres → projets
+3. **EU hosting** = RGPD-friendly
+4. **Gratuit** pour ton volume
+5. **Pas de lock-in** = tu peux exporter et partir
+
+---
+
+## 📊 Architecture proposée avec Supabase
+
+```sql
+-- Tables Supabase
+
+teams (
+  id, name, captain_email, sector, 
+  created_at, paid, score
+)
+
+members (
+  id, team_id, name, email, role, 
+  sector (marchand/non-marchand)
+)
+
+projects (
+  id, team_id, title, description, 
+  budget, status, submitted_at
+)
+```
+
+```
+┌──────────────────────────────────────────────────┐
+│  synergy-game.html                               │
+│  [S'inscrire] → Modal formulaire                 │
+│  → Crée team + captain dans Supabase            │
+└──────────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────────┐
+│  synergy-team.html?id=xxx                        │
+│  Dashboard équipe (après inscription)            │
+│  - Ajouter membres                               │
+│  - Soumettre projet                              │
+│  - Voir statut paiement                          │
+└──────────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────────┐
+│  synergy-leaderboard.html                        │
+│  Classement public de toutes les équipes         │
+│  Temps réel depuis Supabase                      │
+└──────────────────────────────────────────────────┘
+```
+
+---
+
+## ⏱️ Temps estimé
+
+| Tâche | Durée |
+|-------|-------|
+| Setup Supabase (tables, RLS) | 30 min |
+| Formulaire inscription | 1h |
+| Dashboard équipe | 2h |
+| Leaderboard public | 1h |
+| **Total** | **~1 session** |
+
+---
+
+**Tu veux que je lance avec Supabase ?** 
+
+Je te guide pour créer le projet Supabase, et je code les pages.
+
+> oki++
+
+## 🚀 Setup Supabase — Étape 1
+
+### Crée ton projet Supabase
+
+1. Va sur **https://supabase.com**
+2. **Sign up** (GitHub ou email)
+3. **New Project**
+   - Name: `synergy-game`
+   - Database Password: (note-le bien !)
+   - Region: **EU West (Paris)** ← important pour RGPD
+4. Attends 2 min que le projet se crée
+
+---
+
+### Récupère tes clés
+
+Une fois le projet créé :
+
+1. Va dans **Settings** → **API**
+2. Copie :
+   - **Project URL** : `https://xxxxx.supabase.co`
+   - **anon public key** : `eyJhbG...` (la clé publique, safe côté client)
+
+---
+
+### Crée les tables
+
+Va dans **SQL Editor** et exécute ce script :
+
+```sql
+-- =============================================
+-- SYNERGY GAME — SCHEMA SUPABASE
+-- =============================================
+
+-- Table des équipes
+CREATE TABLE teams (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  captain_name VARCHAR(100) NOT NULL,
+  captain_email VARCHAR(255) NOT NULL UNIQUE,
+  sector VARCHAR(50) DEFAULT 'hybrid',
+  tagline TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  paid BOOLEAN DEFAULT FALSE,
+  score INTEGER DEFAULT 0,
+  status VARCHAR(20) DEFAULT 'forming'
+);
+
+-- Table des membres
+CREATE TABLE members (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  team_id UUID REFERENCES teams(id) ON DELETE CASCADE,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(255),
+  role VARCHAR(100),
+  sector VARCHAR(20) CHECK (sector IN ('marchand', 'non-marchand')),
+  is_fictional BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Table des projets
+CREATE TABLE projects (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  team_id UUID REFERENCES teams(id) ON DELETE CASCADE UNIQUE,
+  title VARCHAR(200) NOT NULL,
+  description TEXT,
+  budget_planned DECIMAL(10,2),
+  budget_spent DECIMAL(10,2) DEFAULT 0,
+  impact_description TEXT,
+  submitted_at TIMESTAMP WITH TIME ZONE,
+  status VARCHAR(20) DEFAULT 'draft'
+);
+
+-- Index pour performance
+CREATE INDEX idx_members_team ON members(team_id);
+CREATE INDEX idx_projects_team ON projects(team_id);
+
+-- =============================================
+-- ROW LEVEL SECURITY (RLS)
+-- =============================================
+
+-- Activer RLS
+ALTER TABLE teams ENABLE ROW LEVEL SECURITY;
+ALTER TABLE members ENABLE ROW LEVEL SECURITY;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+
+-- Politique : Tout le monde peut LIRE les équipes (leaderboard public)
+CREATE POLICY "Teams are viewable by everyone" 
+ON teams FOR SELECT 
+USING (true);
+
+-- Politique : Tout le monde peut créer une équipe
+CREATE POLICY "Anyone can create a team" 
+ON teams FOR INSERT 
+WITH CHECK (true);
+
+-- Politique : Lecture des membres (public pour affichage)
+CREATE POLICY "Members are viewable by everyone" 
+ON members FOR SELECT 
+USING (true);
+
+-- Politique : Ajout de membres (via team_id)
+CREATE POLICY "Anyone can add members" 
+ON members FOR INSERT 
+WITH CHECK (true);
+
+-- Politique : Lecture des projets soumis
+CREATE POLICY "Submitted projects are viewable" 
+ON projects FOR SELECT 
+USING (status = 'submitted' OR true);
+
+-- Politique : Création/modification projet
+CREATE POLICY "Anyone can create projects" 
+ON projects FOR INSERT 
+WITH CHECK (true);
+
+CREATE POLICY "Anyone can update their project" 
+ON projects FOR UPDATE 
+USING (true);
+```
+
+---
+
+### Une fois fait, donne-moi :
+
+1. ✅ **Project URL** : `https://xxxxx.supabase.co`
+2. ✅ **Anon key** : `eyJhbG...`
+
+Je créerai alors les pages HTML qui se connectent à ton Supabase.
+
+---
+
+⏳ **En attendant**, je prépare déjà le code frontend avec des placeholders pour les clés...## ✅ Synergy Game Backend créé !
+
+---
+
+### 📁 Fichiers créés
+
+| Fichier | Rôle |
+|---------|------|
+| `synergy-config.js` | Configuration Supabase (⚠️ à modifier) |
+| `synergy-api.js` | Client API (teams, members, projects) |
+| `synergy-register.html` | Inscription équipe |
+| `synergy-team.html` | Dashboard équipe |
+| `synergy-leaderboard.html` | Classement public |
+| `synergy-game.html` | Landing (mise à jour avec boutons) |
+
+---
+
+### 🚀 Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  synergy-game.html                                      │
+│  [⚔️ Créer mon équipe] [🏆 Leaderboard]                │
+└────────────┬────────────────────────┬───────────────────┘
+             │                        │
+             ▼                        ▼
+┌────────────────────┐    ┌─────────────────────────────┐
+│ synergy-register   │    │ synergy-leaderboard         │
+│ Formulaire         │    │ Classement temps réel       │
+│ création équipe    │    │ Stats globales              │
+└─────────┬──────────┘    └─────────────────────────────┘
+          │                           ▲
+          ▼                           │
+┌─────────────────────────────────────┴───────────────────┐
+│                      SUPABASE                           │
+│  ┌─────────┐  ┌──────────┐  ┌──────────┐               │
+│  │ teams   │  │ members  │  │ projects │               │
+│  └─────────┘  └──────────┘  └──────────┘               │
+└─────────────────────────────────────────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────────────────────────────┐
+│ synergy-team.html                                       │
+│ Dashboard équipe                                        │
+│ - Ajouter membres                                       │
+│ - Balance secteurs                                      │
+│ - Soumettre projet                                      │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔧 Configuration Supabase — À faire maintenant
+
+### Étape 1 : Créer le projet
+
+1. **https://supabase.com** → Sign up
+2. **New Project**
+   - Name: `synergy-game`
+   - Region: **EU West (Paris)**
+   - Password: (note-le !)
+
+### Étape 2 : Créer les tables
+
+Dans **SQL Editor**, colle et exécute :
+
+```sql
+-- Table des équipes
+CREATE TABLE teams (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  captain_name VARCHAR(100) NOT NULL,
+  captain_email VARCHAR(255) NOT NULL UNIQUE,
+  sector VARCHAR(50) DEFAULT 'hybrid',
+  tagline TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  paid BOOLEAN DEFAULT FALSE,
+  score INTEGER DEFAULT 0,
+  status VARCHAR(20) DEFAULT 'forming'
+);
+
+-- Table des membres
+CREATE TABLE members (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  team_id UUID REFERENCES teams(id) ON DELETE CASCADE,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(255),
+  role VARCHAR(100),
+  sector VARCHAR(20) CHECK (sector IN ('marchand', 'non-marchand')),
+  is_fictional BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Table des projets
+CREATE TABLE projects (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  team_id UUID REFERENCES teams(id) ON DELETE CASCADE UNIQUE,
+  title VARCHAR(200) NOT NULL,
+  description TEXT,
+  budget_planned DECIMAL(10,2),
+  budget_spent DECIMAL(10,2) DEFAULT 0,
+  impact_description TEXT,
+  submitted_at TIMESTAMP WITH TIME ZONE,
+  status VARCHAR(20) DEFAULT 'draft'
+);
+
+-- Row Level Security
+ALTER TABLE teams ENABLE ROW LEVEL SECURITY;
+ALTER TABLE members ENABLE ROW LEVEL SECURITY;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_read_teams" ON teams FOR SELECT USING (true);
+CREATE POLICY "public_insert_teams" ON teams FOR INSERT WITH CHECK (true);
+CREATE POLICY "public_read_members" ON members FOR SELECT USING (true);
+CREATE POLICY "public_insert_members" ON members FOR INSERT WITH CHECK (true);
+CREATE POLICY "public_delete_members" ON members FOR DELETE USING (true);
+CREATE POLICY "public_all_projects" ON projects FOR ALL USING (true);
+```
+
+### Étape 3 : Récupérer les clés
+
+**Settings → API** :
+- **Project URL** : `https://xxxxx.supabase.co`
+- **anon public key** : `eyJhbG...`
+
+### Étape 4 : Modifier synergy-config.js
+
+```javascript
+const SYNERGY_CONFIG = {
+    SUPABASE_URL: 'https://TON_PROJET.supabase.co',
+    SUPABASE_ANON_KEY: 'eyJhbG...',
+    // ...
+};
+```
+
+---
+
+## 🧪 Test
+
+1. Ouvre `synergy-register.html`
+2. Crée une équipe test
+3. Tu es redirigé vers `synergy-team.html`
+4. Ajoute des membres
+5. Vérifie sur `synergy-leaderboard.html`
+
+---
+
+**Donne-moi tes clés Supabase quand c'est prêt, je peux vérifier que tout fonctionne !** 🚀
+
+---
+
+## ✅ Système dual Supabase / Google Forms créé !
+
+---
+
+### 📁 Architecture finale
+
+```
+synergy-game.html
+     │
+     ├── [⚔️ Créer mon équipe]
+     │         ↓
+     │   synergy-inscription.html  ← ROUTER INTELLIGENT
+     │         │
+     │    ┌────┴────┐
+     │    ↓         ↓
+     │ [Supabase]  [Google Forms]
+     │    ↓              ↓
+     │ synergy-register.html    Redirige vers
+     │    ↓                     Google Form URL
+     │ synergy-team.html
+     │
+     ├── [🏆 Leaderboard]
+     │         ↓
+     │   synergy-leaderboard.html
+     │         │
+     │    ┌────┴────┐
+     │    ↓         ↓
+     │ [Supabase]  [Google Forms]
+     │ Temps réel   Message manuel
+     │
+     └── [⚙️ Admin]
+               ↓
+         synergy-setup.html  ← CONFIG BACKEND
+               │
+          ┌────┴────┐
+          ↓         ↓
+      Supabase   Google Forms
+```
+
+---
+
+### 🚀 Option A : Supabase (recommandé)
+
+| Avantages | Inconvénients |
+|-----------|---------------|
+| ✅ 100% automatisé | ⏱️ 30 min de setup |
+| ✅ Temps réel | 📝 Compte à créer |
+| ✅ Dashboard équipe interactif | |
+| ✅ Leaderboard dynamique | |
+| ✅ EU possible (RGPD) | |
+| ✅ Gratuit (free tier) | |
+
+---
+
+### 📝 Option B : Google Forms
+
+| Avantages | Inconvénients |
+|-----------|---------------|
+| ✅ Setup 5 minutes | ❌ Gestion manuelle |
+| ✅ Zéro code | ❌ Pas de dashboard équipe |
+| ✅ Familier | ❌ Leaderboard statique |
+| ✅ Gratuit | ❌ Données US (Google) |
+
+---
+
+### ⚠️ Warnings affichés aux utilisateurs
+
+**En mode Google Forms :**
+- Page inscription : avertissement sur les limitations
+- Leaderboard : message "mise à jour manuelle"
+- Pas d'accès au dashboard équipe
+
+**Si non configuré :**
+- Toutes les pages : lien vers `synergy-setup.html`
+
+---
+
+### 🔧 Comment configurer
+
+1. Ouvre **synergy-setup.html**
+2. Choisis ton option :
+   - **Supabase** : Suis les étapes SQL + clés API
+   - **Google Forms** : Crée le form + colle l'URL
+3. Clique **Sauvegarder**
+4. C'est prêt !
+
+---
+
+### 📊 Récap des fichiers Synergy
+
+| Fichier | Rôle |
+|---------|------|
+| `synergy-game.html` | Landing page (mise à jour) |
+| `synergy-setup.html` | **Config backend** ← NOUVEAU |
+| `synergy-config.js` | Détection auto du mode |
+| `synergy-inscription.html` | Router inscription |
+| `synergy-register.html` | Inscription Supabase |
+| `synergy-team.html` | Dashboard équipe Supabase |
+| `synergy-leaderboard.html` | Leaderboard adaptatif |
+| `synergy-api.js` | Client Supabase |
+
+---
+
+### 🧪 Pour tester
+
+1. Ouvre `synergy-setup.html`
+2. Choisis une option et configure
+3. Ouvre `synergy-game.html`
+4. Clique "Créer mon équipe"
+5. Vérifie que le bon mode s'active !
+
+**Prêt pour le lancement ? 🚀**
+
+---
+
+Bonne idée ! Je complète avec les 4 options :## ✅ Système à 4 backends créé !
+
+---
+
+### 📊 Comparaison des 4 options
+
+| | 🚀 Supabase | 🔥 Firebase | 📝 Google Forms | 🐘 Framaforms |
+|---|---|---|---|---|
+| **Type** | PostgreSQL | Firestore NoSQL | Formulaire | Formulaire |
+| **Temps réel** | ✅ Oui | ✅ Oui | ❌ Non | ❌ Non |
+| **Dashboard équipe** | ✅ Interactif | ✅ Interactif | ❌ Manuel | ❌ Manuel |
+| **Leaderboard** | ✅ Auto | ✅ Auto | ⚠️ Manuel | ⚠️ Manuel |
+| **Hébergement EU** | ✅ Possible | ❌ US | ❌ US | ✅ France |
+| **Open source** | ✅ 100% | ❌ Google | ❌ Google | ✅ Libre |
+| **Éthique** | ✅ | ⚠️ | ⚠️ | ✅ Framasoft |
+| **Setup** | ~30min | ~20min | ~5min | ~5min |
+| **Coût** | Gratuit | Gratuit | Gratuit | Gratuit (don) |
+
+---
+
+### 🎯 Recommandations
+
+| Profil | Option recommandée |
+|--------|-------------------|
+| **Pro / Production** | 🚀 Supabase |
+| **Familier Google** | 🔥 Firebase |
+| **Ultra-simple / MVP** | 📝 Google Forms |
+| **Valeurs éthiques** | 🐘 Framaforms |
+
+---
+
+### 📁 Fichiers Synergy mis à jour
+
+| Fichier | Changement |
+|---------|------------|
+| `synergy-setup.html` | **4 options** avec comparaison |
+| `synergy-config.js` | Détection des 4 modes |
+| `synergy-api-firebase.js` | **NOUVEAU** — Client Firebase |
+| `synergy-api.js` | Client Supabase (inchangé) |
+| `synergy-register.html` | Support Supabase + Firebase |
+| `synergy-team.html` | Support Supabase + Firebase |
+| `synergy-leaderboard.html` | Support 4 modes |
+| `synergy-inscription.html` | Routage intelligent |
+
+---
+
+### 🔧 Comment configurer
+
+1. **Ouvre `synergy-setup.html`**
+2. **Choisis ton option** parmi les 4 cartes
+3. **Suis les instructions** affichées
+4. **Clique "Activer"**
+5. **C'est prêt !**
+
+---
+
+### 🐘 Note sur Framaforms
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  🐘 FRAMAFORMS — Le choix éthique                       │
+├─────────────────────────────────────────────────────────┤
+│  • Hébergé en France 🇫🇷                                │
+│  • Respecte le RGPD                                     │
+│  • Association loi 1901                                 │
+│  • Pas de revente de données                            │
+│  • Logiciel libre                                       │
+│                                                         │
+│  💡 Pensez à faire un don : soutenir.framasoft.org     │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### ⚠️ Limitations modes formulaires
+
+Avec **Google Forms** ou **Framaforms** :
+- ❌ Pas de dashboard équipe dynamique
+- ❌ Leaderboard mis à jour manuellement
+- ❌ Ajout de membres via formulaire séparé
+- ✅ Les participants reçoivent un email de confirmation
+- ✅ Tu vois les réponses dans Sheets/Framaforms
+
+Les **warnings sont affichés** aux utilisateurs sur chaque page concernée.
+
+---
+
+**Prêt à lancer ! 🚀 Quelle option vas-tu choisir ?**
+
