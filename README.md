@@ -46,7 +46,7 @@
 
 ### 📊 Récapitulatif KERN Final
 
-```
+
 KERN v2.0
 ═════════
 📦 22 modules actifs
@@ -59,7 +59,7 @@ KERN v2.0
 
 ## ✅ Fichiers archivés livrés
 
----
+
 
 ### 📦 Contenu du dossier `_archive/`
 
