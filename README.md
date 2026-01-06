@@ -54,6 +54,65 @@ KERN v2.0
 💾 ~1.1 MB total
 🔗 11 modules intégrés KERN-CORE
 ⬜ 11 modules standalone
+
+---
+
+## ✅ Fichiers archivés livrés
+
+---
+
+### 📦 Contenu du dossier `_archive/`
+
+| Fichier | Taille | Remplacé par |
+|---------|--------|--------------|
+| **00-citadel-command.html** | 54 KB | 00-kern-nexus.html |
+| **00-nexus-hq.html** | 37 KB | 00-kern-nexus.html |
+| **04-network-map.html** | 43 KB | 17-contact-network.html |
+| **07-dashboard.html** | 43 KB | 00-kern-nexus.html |
+| **ARCHIVE-README.md** | 5 KB | *(documentation)* |
+
+---
+
+### 🔍 Résumé des raisons d'archivage
+
+| Module | Problème | Solution |
+|--------|----------|----------|
+| **citadel-command** | Interface trop "militaire", pas de KERN-CORE | Fusionné dans KERN::NEXUS |
+| **nexus-hq** | Doublon de citadel, pas de KERN-CORE | Fusionné dans KERN::NEXUS |
+| **network-map** | Graphe D3.js basique, pas de force des liens | Remplacé par KERN::NETWORK avec graphe radial |
+| **dashboard** | 3ème tentative de dashboard, widgets non intégrés | Consolidé dans KERN::NEXUS |
+
+---
+
+### 📐 Logique d'unification
+
+```
+AVANT (4 fichiers redondants)          APRÈS (2 fichiers unifiés)
+═══════════════════════════            ═════════════════════════
+
+┌─────────────────────┐
+│ 00-citadel-command  │───┐
+└─────────────────────┘   │
+                          │
+┌─────────────────────┐   │         ┌─────────────────────┐
+│ 00-nexus-hq         │───┼────────►│ 00-kern-nexus.html  │
+└─────────────────────┘   │         │ (Dashboard unifié)  │
+                          │         └─────────────────────┘
+┌─────────────────────┐   │
+│ 07-dashboard        │───┘
+└─────────────────────┘
+
+
+┌─────────────────────┐             ┌─────────────────────┐
+│ 04-network-map      │────────────►│ 17-contact-network  │
+└─────────────────────┘             │ (Graphe radial D3)  │
+                                    └─────────────────────┘
+
+Économie : 177 KB de doublons éliminés
+Gain : Architecture cohérente + KERN-CORE intégré
+```
+
+Tous les fichiers sont maintenant disponibles ! 📁
 📁 4 modules archivés
 ```
 
