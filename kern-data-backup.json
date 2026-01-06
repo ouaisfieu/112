@@ -1,5 +1,5 @@
 {
-  "kern_agent": {
+  "kern_agent_profile": {
     "codename": "GANDALF-PRIME",
     "level": 12,
     "xp": 15420,
@@ -469,61 +469,6 @@
       ],
       "linkedEntities": [
         "entity_colruyt"
-      ],
-      "linkedContacts": []
-    },
-    {
-      "id": "dossier_synergy_001",
-      "created": "2025-01-06T12:00:00.000Z",
-      "updated": "2025-01-06T12:00:00.000Z",
-      "title": "⚔️ SYNERGY GAME — Compétition Intersectorielle",
-      "description": "Team building intersectoriel Marchand × Non-Marchand. Équipes de 9, projets hybrides, budget minimal. Cibles: FESEFA & Colruyt Academy.",
-      "status": "active",
-      "priority": "high",
-      "tags": [
-        "synergy",
-        "team-building",
-        "intersectoriel",
-        "marchand",
-        "non-marchand",
-        "competition"
-      ],
-      "timeline": [
-        {
-          "date": "2025-01-06",
-          "event": "Lancement du SYNERGY GAME",
-          "type": "start"
-        },
-        {
-          "date": "2025-04-01",
-          "event": "Date limite soumission CCPLC.eu",
-          "type": "deadline"
-        },
-        {
-          "date": "2025-10-31",
-          "event": "Point d'orgue [SECRET] - Halloween",
-          "type": "finale"
-        }
-      ],
-      "evidence": [
-        {
-          "id": "ev_syn01",
-          "type": "document",
-          "title": "Règlement complet",
-          "source": "synergy-game.html",
-          "reliability": 5
-        },
-        {
-          "id": "ev_syn02",
-          "type": "data",
-          "title": "IBAN caché dans le code",
-          "source": "Code source",
-          "reliability": 5
-        }
-      ],
-      "linkedEntities": [
-        "entity_colruyt",
-        "entity_fesefa"
       ],
       "linkedContacts": []
     }
@@ -1094,23 +1039,6 @@
         "cible"
       ],
       "created": "2026-01-06T00:00:00.000Z",
-      "links": []
-    },
-    {
-      "id": "entity_fesefa",
-      "name": "FESEFA",
-      "type": "organization",
-      "subtype": "Fédération",
-      "emoji": "🎓",
-      "description": "Fédération des Employeurs des Secteurs de l'Éducation permanente et de la Formation des Adultes. Cible SYNERGY GAME secteur non-marchand.",
-      "tags": [
-        "education",
-        "formation",
-        "non-marchand",
-        "federation",
-        "cible"
-      ],
-      "created": "2025-01-06T00:00:00.000Z",
       "links": []
     }
   ],
@@ -1849,27 +1777,6 @@
         3
       ],
       "created": "2025-02-15T00:00:00.000Z"
-    },
-    {
-      "id": "mission_synergy_001",
-      "emoji": "⚔️",
-      "name": "SYNERGY GAME 2025",
-      "description": "Former une équipe hybride de 9, concevoir un projet intersectoriel, gagner la compétition.",
-      "difficulty": "hard",
-      "xpReward": 5000,
-      "status": "active",
-      "requirements": [
-        "Recruter 8 coéquipiers (mix marchand/non-marchand)",
-        "Définir le projet commun",
-        "Trouver l'IBAN caché dans le code",
-        "Effectuer le virement (112,50€)",
-        "Soumettre sur CCPLC.eu avant le 1er avril",
-        "Développer le projet",
-        "Participer au point d'orgue Halloween",
-        "Découvrir qui a créé le jeu (BONUS)"
-      ],
-      "completedReqs": [],
-      "created": "2025-01-06T00:00:00.000Z"
     }
   ],
   "kern_journal": [
@@ -1956,17 +1863,6 @@
       ],
       "createdAt": "2026-01-05T23:45:00.000Z",
       "updatedAt": "2026-01-05T23:45:00.000Z"
-    },
-    {
-      "id": "journal_synergy_001",
-      "content": "Lancement du SYNERGY GAME aujourd'hui.\n\nConcept ambitieux : mettre en synergie le secteur marchand et non-marchand via une compétition. Équipes de 9, projets hybrides, budget minimal.\n\nCibles principales:\n- FESEFA (non-marchand) - Fédération Éducation permanente\n- Colruyt Academy (marchand) - Pôle formation Colruyt\n\nLe twist : l'IBAN d'inscription est caché dans le code source. Seuls les vrais curieux trouveront.\n\nDeadline: 1er avril\nFinale secrète: Halloween 🎃\n\n#synergy #competition #intersectoriel",
-      "tags": [
-        "synergy",
-        "lancement",
-        "competition"
-      ],
-      "createdAt": "2025-01-06T12:00:00.000Z",
-      "updatedAt": "2025-01-06T12:00:00.000Z"
     }
   ],
   "kern_partners": [
